@@ -1,0 +1,35 @@
+<h3>Oblicz miesięczną ratę</h3>
+
+<label><input type="checkbox" class="kontrolki" id="react"> Kurs React.js</label><br>
+<label><input type="checkbox" class="kontrolki" id="js"> Kurs JavaScript</label><br>
+
+<label>Liczba rat: <input type="number" class="kontrolki" id="raty"></label><br>
+
+<select id="miasto" class="kontrolki">
+  <option>Warszawa</option>
+  <option>Katowice</option>
+  <option>Gdańsk</option>
+</select><br>
+
+<button onclick="obliczRate()" class="kontrolki">Oblicz</button>
+<p id="wynik"></p>
+
+<script>
+  function obliczRate() {
+    let kwota = 0;
+    if (document.getElementById('react').checked) kwota += 1200;
+    if (document.getElementById('js').checked) kwota += 900;
+
+    const liczbaRat = parseInt(document.getElementById('raty').value);
+    const miasto = document.getElementById('miasto').value;
+
+    if (!liczbaRat || liczbaRat <= 0) {
+      document.getElementById('wynik').innerHTML = "Podaj prawidłową liczbę rat.";
+      return;
+    }
+
+    const rata = (kwota / liczbaRat).toFixed(2);
+    document.getElementById('wynik').innerHTML = 
+      `Kurs odbędzie się w ${miasto}. Koszt całkowity: ${kwota} zł. Płacisz ${liczbaRat} rat po ${rata} zł`;
+  }
+</script>
